@@ -9,6 +9,9 @@ const orderRoutes = require('./api/routes/orders');
 
 mongoose.connect("mongodb+srv://shubhamg_7292:"+process.env.MONGO_ATLAS_PW+"@cluster0-cr1db.mongodb.net/Shop-Data?retryWrites=true&w=majority", { useNewUrlParser: true , useUnifiedTopology: true});
 
+//Default nodejs promice implementaion instead of mongoose
+mongoose.Promise = global.Promise;
+
 //Morgan is used to handle errors on server side
 app.use(morgan('dev'));
 
