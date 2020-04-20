@@ -42,9 +42,9 @@ router.post('/', (req, res, next) => {
         res.status(201).json({
             message: 'Created product succesfully',
             createdProduct: {
-                name: doc.name,
-                price: doc.price,
-                _id: doc._id,
+                name: result.name,
+                price: result.price,
+                _id: result._id,
                 request : {
                     type: 'POST',
                     url: 'http://localhost:3000/products/'+ result._id
@@ -58,6 +58,11 @@ router.post('/', (req, res, next) => {
             error: err
         });
     });
+    //send post request like this
+    // {
+    //     "name": "NetFlix",
+    //     "price":"25"
+    // }
 });
 
 router.get('/:productId', (req, res, next) => {
@@ -71,7 +76,7 @@ router.get('/:productId', (req, res, next) => {
             res.status(200).json({
                 product: doc,
                 request: {
-                    type: 'POST',
+                    type: 'GET',
                     url: 'http://localhost:3000/products/'+ doc._id
                 }
             });
