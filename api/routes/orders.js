@@ -8,6 +8,7 @@ const Product = require("../models/products");
 router.get('/', (req, res, next) => {
     Order.find()
     .select('product quantity _id')  //specific data to retrive
+        .populate('product')   //display product data inside orders instead of only productId
         .exec()
         .then(docs => {
             res.status(200).json({
@@ -77,6 +78,7 @@ router.post('/', (req, res, next) => {
 router.get('/:orderId', (req, res, next) => {
     const id = req.params.orderId;
     Order.findById(id)
+    .populate('product')  //display product data inside orders instead of only productId
     .exec()
     .then(doc => {
         console.log(doc);
